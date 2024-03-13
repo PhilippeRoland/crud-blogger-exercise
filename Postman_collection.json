@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "fd2147af-49f9-4e0f-9e05-6a09072ea62e",
+		"name": "Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8149751"
+	},
+	"item": [
+		{
+			"name": "Create Post (No Tags)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"Test title\", \"description\":\"Test description\", \"author\":\"Philippe\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"My First Post\", \"description\":\"An appropriate blog post content\", \"author\":\"Philippe R\", \"tags\": [{\"name\":\"my Tag\"}, {\"name\":\"testTag\"}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post, Overlapping Tags",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"test\", \"description\":\"Test description 2\", \"author\":\"Philippe\", \"tags\": [{\"name\":\"my Tag 2\"}, {\"name\":\"testTag\"}, {\"name\":\"Another Tag\"}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post, Unicode Hell",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"💬\", \"description\":\"所際厚経俊分記三量號本庁周記門所氏作。皮罪来自有水館所日類新喪提紀型。報塊続作姿毎査界元督県北光主刊試。廣立型被断新田初毎毎海問打触月。組発六年未朝士併安崎新加偵安意政。振問基認被転会川補五雲著保医帯四。点紙最更髪初離季補社全政週大実贈岳。際影軽替要令要止略党古額書裁。回陽積幸田動著野提率減書行事済床顔。a ä ö ü ß\", \"author\":\"💻👨\", \"tags\": [{\"name\":\"✒\"}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Plain GET, no params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderedByDate DESC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/posts?order=desc&sort_by=creationDate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "desc"
+						},
+						{
+							"key": "sort_by",
+							"value": "creationDate"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderedByDate ASC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/posts?order=asc&sort_by=creationDate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "asc"
+						},
+						{
+							"key": "sort_by",
+							"value": "creationDate"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderedByAuthor ASC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/posts?order=asc&sort_by=author",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "asc"
+						},
+						{
+							"key": "sort_by",
+							"value": "author"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderedByNonExistingParam",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/posts?sort_by=some param that does not exist",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "sort_by",
+							"value": "some param that does not exist"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter By Tag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/posts?tag_filter=testTag",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "tag_filter",
+							"value": "testTag"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
