@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableJpaAuditing //used for Post createDate auto-fill
+@EnableJpaAuditing //used for Post createDate autofill
 @SpringBootApplication
 public class BloggerApplication {
 

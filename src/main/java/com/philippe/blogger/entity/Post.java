@@ -7,7 +7,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -58,15 +57,12 @@ public class Post {
             )
     @JoinTable(name="Post_Tags",
             joinColumns={@JoinColumn(name="post_id")},
-            inverseJoinColumns={@JoinColumn(name="tag_name")},
-            indexes = {@Index(columnList = "tag_name")}) //TODO might not be necessary given Tag.name already has an index as a primary key
+            inverseJoinColumns={@JoinColumn(name="tag_name")})
     private Set<Tag> tags;
 
     public boolean hasTag(String tagName) {
         return tags.stream().
-                filter(tag -> tagName.equals(tag.getName())).
-                findAny().
-                isPresent();
+                anyMatch(tag -> tagName.equals(tag.getName()));
     }
 
 }

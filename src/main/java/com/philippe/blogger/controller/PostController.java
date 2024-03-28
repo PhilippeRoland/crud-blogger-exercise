@@ -48,7 +48,7 @@ public class PostController {
             */
             Set<Tag> tags = post.getTags();
             if(tags != null) {
-                tags.stream().forEach(tag -> createIfNotPresent(tag));
+                tags.forEach(this::createIfNotPresent);
             }
             postRepository.save(post);
             return ResponseEntity.ok().build();
@@ -70,7 +70,7 @@ public class PostController {
         try {
             Sort.Order sortDirection = getSortDirection(order, sort_by);
             sortedList = postRepository.findAll(Sort.by(sortDirection));
-            sortedList = StringUtils.isBlank(tag_filter)? sortedList = sortedList:
+            sortedList = StringUtils.isBlank(tag_filter)? sortedList :
                     sortedList.stream().
                     filter(post -> post.hasTag(tag_filter)).
                     collect(Collectors.toList());
