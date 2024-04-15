@@ -1,6 +1,10 @@
 # How to use
 
-With Gradle installed, run *./gradlew clean bootRun* from the main project repository.
+With Docker and Java 21 installed, run in a terminal
+*docker build -t blogger .* and then *docker run -p 8080:8080 blogger*
+
+Alternatively, with Gradle installed, run *./gradlew clean bootRun* from the main project repository.
+
 Once you can see "Started BloggerApplication" in the console, an in-memory database will be running with the schema and a local server running on port 8080, awaiting commands.
 
 ## Sending commands
